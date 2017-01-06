@@ -18,7 +18,7 @@ tags: [C++,STL]
 * [cppreference.com](http://www.cppreference.com)
 * [gcc.gnu.org](http://gcc.gnu.org)
 
-STL六大部件
+STL六大部件（Components）
 
 * 容器（Containers）
 * 分配器（Allocators）
