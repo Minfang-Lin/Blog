@@ -1,6 +1,7 @@
 ---
 title: C++ 新标准 11/14 - 01
 date: 2017-01-06 19:40
+author: Minfang Lin
 tags: [Cpp,11/14,侯捷]
 ---
 
