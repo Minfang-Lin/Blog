@@ -4,8 +4,8 @@
 
 # Site
 title: 叶卡林娜的部落格
-subtitle:
-description:
+subtitle: 不想当程序员的医生不是好作家
+description: A simple blog about medicine, programmering and other interesting things.
 author: Minfang Lin
 email: leafcard@gmail.com
 language: zh-CN
@@ -64,7 +64,8 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: apollo
+# theme: apollo
+theme: cactus-dark
 
 # 在归档页面显示所有文章
 # 需要上面安装的 hexo-generator-archive 插件支持

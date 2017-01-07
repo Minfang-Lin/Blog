@@ -1,0 +1,17 @@
+[
+    {
+       "name":"Online Judge AC Code",
+       "url":"https://github.com/Minfang-Lin/OnlineJudge",
+       "desc":"玩Online Judge的记录"
+    },
+    {
+       "name":"Medical Books",
+       "url":"/medical-books/",
+       "desc":"医学图书电子版收集"
+    },
+    {
+       "name":"Nostalgic Data",
+       "url":"/nostalgic-data/",
+       "desc":"广为人知的电波怒汉录音合集"
+    }
+]
