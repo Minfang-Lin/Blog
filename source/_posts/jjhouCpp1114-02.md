@@ -10,13 +10,15 @@ tags: [Cpp,11/14,侯捷]
 C++2.0之前explicit用于一个实参的构造函数（none explicit one argument constructor)。多余一个参数的不会发生隐式转换。
 
 ``` cpp
-struct Complex {
-	int real, imag;
-	Complex(int re, int im=0): real(re), imag(im) { }
-	Complex operator+(const Complex& x) {
-		return Complex((real+x.real), (imag+x.imag));
-	}
-}
+struct Complex1 
+{
+    int real, imag;
+		
+    Complex1(int re, int im=0) : real(re), imag(im) {  }
+
+    Complex1 operator+(const Complex1& x) 
+    { return Complex1((real + x.real), (imag + x.imag)); }     	
+};	
 
 Complex c1(12,5);
 Complex c2 = c1 + 5;
@@ -26,14 +28,19 @@ Complex c2 = c1 + 5;
 
 编译器会去找是否可以将5转换为复数（5+0i），所以利用构造函数将5变为复数。
 
+<!-- more -->
+
 ``` cpp
-struct Complex {
-	int real, imag;
-	explicit Complex(int re, int im=0): real(re), imag(im) { }
-	Complex operator+(const Complex& x) {
-		return Complex((real+x.real), (imag+x.imag));
-	}
-}
+struct Complex2 
+{
+    int real, imag;
+	
+	explicit	
+    Complex2(int re, int im=0) : real(re), imag(im) {  }
+
+    Complex2 operator+(const Complex2& x) 
+    { return Complex2((real + x.real), (imag + x.imag)); }     	
+};	
 
 Complex c1(12,5);
 Complex c2 = c1 + 5;  // error
@@ -62,21 +69,20 @@ public:
 
 void fp(const P&) {  };
 	
-//explicit ctor with multi-arguments
-P p1 (77, 5);	        //P(int a, int b)
-P p2 {77, 5};           //P(initializer_list<int>)
-P p3 {77, 5, 42};       //P(initializer_list<int>)
-P p4 = {77, 5};	 		//P(initializer_list<int>)
-P p5 = {77, 5, 42};     //[Error] converting to 'P' from initializer list would use explicit constructor 'P::P(int, int, int)'
-P p6 (77,5,42);         //explicit P(int a, int b, int c)
+// explicit ctor with multi-arguments
+P p1 (77, 5);           // P(int a, int b)
+P p2 {77, 5};           // P(initializer_list<int>)
+P p3 {77, 5, 42};       // P(initializer_list<int>)
+P p4 = {77, 5};         // P(initializer_list<int>)
+P p5 = {77, 5, 42};     // [Error] converting to 'P' from initializer list would use explicit constructor 'P::P(int, int, int)'
+P p6 (77,5,42);         // explicit P(int a, int b, int c)
 	
-fp( {47,11} );			//P(initializer_list<int>)
-fp( {47,11,3} );	    //[Error] converting to 'const P' from initializer list would use explicit constructor 'P::P(int, int, int)'
-fp( P{47,11} );			//P(initializer_list<int>)
-fp( P{47,11,3} );		//P(initializer_list<int>)
+fp( {47,11} );          // P(initializer_list<int>)
+fp( {47,11,3} );        // [Error] converting to 'const P' from initializer list would use explicit constructor 'P::P(int, int, int)'
+fp( P{47,11} );	        // P(initializer_list<int>)
+fp( P{47,11,3} );       // P(initializer_list<int>)
 	
-P p11 {77, 5, 42, 500};	 	 //P(initializer_list<int>)
-P p12 = {77, 5, 42, 500};    //P(initializer_list<int>)
-P p13 {10};					 //P(initializer_list<int>)
-	
+P p11 {77, 5, 42, 500};	     // P(initializer_list<int>)
+P p12 = {77, 5, 42, 500};    // P(initializer_list<int>)
+P p13 {10};                  // P(initializer_list<int>)
 ```

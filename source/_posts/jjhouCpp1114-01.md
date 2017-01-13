@@ -88,10 +88,11 @@ int main() {
 int printf ( const char * format, ... );
 ```
 
-> 摘自Cplusplus.com [[链接]](http://www.cplusplus.com/reference/cstdio/printf/)
- ... (additional arguments)
+{% blockquote Cplusplus.com http://www.cplusplus.com/reference/cstdio/printf/ printf %}
+... (additional arguments)
 Depending on the format string, the function may expect a sequence of additional arguments, each containing a value to be used to replace a format specifier in the format string (or a pointer to a storage location, for n).
 There should be at least as many of these arguments as the number of values specified in the format specifiers. Additional arguments are ignored by the function.
+{% endblockquote %}
 
 在C++2.0里`...`也是用于表示一包（pack）东西。
 
