@@ -31,7 +31,7 @@ ORM（Object Relation Mapping）代表对象关系映射，将数据库种的一
 
 ## JdbcTemplate
 
-``` java
+``` sql
 // 查
 int rowCount = this.jdbcTemplate.queryForObject(
 		"select count(*) from user", Integer.class);

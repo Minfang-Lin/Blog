@@ -52,26 +52,37 @@ struct ProgrammerIdGreater { ... }
 using namespace std;
 //----------------------------------------------------------------
 struct Programmer {
-  Programmer(const int id, const wstring name): Id(id), Name(name) { }
-  void Print() const { wcout << L"[" << Id << L"]:" << Name << endl; }
-  const int getId() const { return Id; }
-  const wstring& getName() const { return Name; }
-  void setName(const wstring& name) { Name = name; }
+	Programmer(const int id, const wstring name) :
+			Id(id), Name(name) {
+	}
+	void Print() const {
+		wcout << L"[" << Id << L"]:" << Name << endl;
+	}
+	const int getId() const {
+		return Id;
+	}
+	const wstring& getName() const {
+		return Name;
+	}
+	void setName(const wstring& name) {
+		Name = name;
+	}
 private:
-  int Id;
-  wstring Name;
+	int Id;
+	wstring Name;
 };
 //----------------------------------------------------------------
 struct ProgrammerIdGreater: public binary_function<Programmer, Programmer, bool> {
-  bool operator() (const Programmer& p1, const Programmer& p2) const {
-    return p1.getId() > p2.getId();
-  }
+	bool operator()(const Programmer& p1, const Programmer& p2) const {
+		return p1.getId() > p2.getId();
+	}
 };
 //----------------------------------------------------------------
-struct ProgrammerNameComparer: public binary_function<Programmer, Programmer, bool> {
-  bool operator() (const Programmer& p1, const Programmer& p2) const {
-    return p1.getName() < p2.getName();
-  }
+struct ProgrammerNameComparer: public binary_function<Programmer, Programmer,
+		bool> {
+	bool operator()(const Programmer& p1, const Programmer& p2) const {
+		return p1.getName() < p2.getName();
+	}
 };
 //----------------------------------------------------------------
 
@@ -88,42 +99,42 @@ using namespace std;
 
 //----------------------------------------------------------------
 int main(int argc, char** argv) {
-  // Step 1
-  const int nSize = 6;
-  const Programmer programmerArray[nSize] = {
-    Programmer(1, L"Scrott Meyers"),
-    Programmer(2, L"Martin Fowler"),
-    Programmer(3, L"Bill Gates"),
-    Programmer(4, L"P.J. Plaught"),
-    Programmer(5, L"Stanley B. Lippman"),
-    Programmer(6, L"Andrei Alexandrescu"),
-  };
-  set<Programmer, ProgrammerIdGreater> set1(programmerArray, programmerArray + nSize);
-  
-  // Step 2
-  for_each(set1.begin(), set1.end(), bind(Programmer::Print, placeholders::_1));
-  cout << "------------------------------"  << endl;
-  
-  // Step 3
-  set<Programmer, ProgrammerIdGreater>::iterator it = set1.find(Programmer(3, L"Bill Gates"));
+	// Step 1
+	const int nSize = 6;
+	const Programmer programmerArray[nSize] = { Programmer(1, L"Scrott Meyers"),
+			Programmer(2, L"Martin Fowler"), Programmer(3, L"Bill Gates"),
+			Programmer(4, L"P.J. Plaught"), Programmer(5,
+					L"Stanley B. Lippman"), Programmer(6,
+					L"Andrei Alexandrescu"), };
+	set<Programmer, ProgrammerIdGreater> set1(programmerArray,
+			programmerArray + nSize);
 
-  // Step 4
-  if (it == set1.end()) {
-    cout << "not found." << endl;
-    exit(0);
-  } else {
-    const_cast<Programmer&>(*it).setName(L"David Vandevoorde");
-  }
-  for_each(set1.begin(), set1.end(), mem_fun_ref(&Programmer::Print));
-  cout << "------------------------------"  << endl;
+	// Step 2
+	for_each(set1.begin(), set1.end(),
+			bind(Programmer::Print, placeholders::_1));
+	cout << "------------------------------" << endl;
 
-  // Step 5
-  set<Programmer, ProgrammerNameComparer> set2(set1.begin(), set1.end());
+	// Step 3
+	set<Programmer, ProgrammerIdGreater>::iterator it = set1.find(
+			Programmer(3, L"Bill Gates"));
 
-  // Step 6
-  for_each(set2.begin(), set2.end(), mem_fn(&Programmer::Print));
-  
-  return 0;
+	// Step 4
+	if (it == set1.end()) {
+		cout << "not found." << endl;
+		exit(0);
+	} else {
+		const_cast<Programmer&>(*it).setName(L"David Vandevoorde");
+	}
+	for_each(set1.begin(), set1.end(), mem_fun_ref(&Programmer::Print));
+	cout << "------------------------------" << endl;
+
+	// Step 5
+	set<Programmer, ProgrammerNameComparer> set2(set1.begin(), set1.end());
+
+	// Step 6
+	for_each(set2.begin(), set2.end(), mem_fn(&Programmer::Print));
+
+	return 0;
 }
 ```
 

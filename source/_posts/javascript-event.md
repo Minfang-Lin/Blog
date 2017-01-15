@@ -14,6 +14,7 @@ tags: JavaScript
 
 ## 使用事件处理程序
 1.HTML事件处理程序
+
 ``` html
 <!--直接嵌入JS代码-->
 <input type="button" id="btn" onclick="alert('hello world')">
@@ -25,6 +26,7 @@ tags: JavaScript
 	}
 </script>
 ```
+
 缺点：HTML和JS紧密耦合在一起，若需要修改程序则需要同时修改HTML和JS，故已经基本被摒弃。
 <!--more-->
 2.DOM 0级事件处理程序

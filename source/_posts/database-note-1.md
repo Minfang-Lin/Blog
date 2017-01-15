@@ -47,7 +47,7 @@ Statement stmt = conn.createStatement();
 
 常用方法：
 
-```
+``` java
 ResultSet rs = stmt.executeQuery("select userName from user);
 ```
 

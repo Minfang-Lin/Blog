@@ -48,6 +48,7 @@ Fruit::delete(), ptr = 0xc621a0, size = 24
 我用黄色高亮标注的if(p)，如果单纯从free(p)这个操作来讲，是不需要再判断p是否非空的，不知道此处的用意如何。比如说p指向了别的程序内存，或者系统内存，那么delete就会出现严重后果，但这个时候p也不是空，照样会执行。系统默认的delete是否有机制去避免这样的情况。
 
 点评中提到这道题目的本意是重载Apple类里的new和delete，一般做工程时也不会去“重载”全局new和delete，在Apple类里面可以调用全局的new和delete。.h文件可以改成如下：
+
 ``` cpp
 #ifndef __FRUIT_H__
 #define __FRUIT_H__ 
@@ -56,60 +57,73 @@ Fruit::delete(), ptr = 0xc621a0, size = 24
 using namespace std;
 //----------------------------------------------------------------  
 class Fruit {
-  int no;
-  double weight;
-  char key;
+	int no;
+	double weight;
+	char key;
 public:
-  Fruit() { cout << "default Fruit ctor.this = " << this << endl; }
-  virtual ~Fruit() { cout << "Fruit dtor.this = " << this << endl; }
-  virtual void process() { }
-  void print() { }
+	Fruit() {
+		cout << "default Fruit ctor.this = " << this << endl;
+	}
+	virtual ~Fruit() {
+		cout << "Fruit dtor.this = " << this << endl;
+	}
+	virtual void process() {
+	}
+	void print() {
+	}
 };
 //----------------------------------------------------------------  
 class Apple: public Fruit {
-  int size;
-  char type;
+	int size;
+	char type;
 public:
-  Apple() { cout << "default Apple ctor.this = " << this << endl; }
-  virtual ~Apple() { cout << "Apple dtor.this = " << this << endl; }
-  virtual void process() { }
-  void save() { }
-  static void* operator new(size_t size);
-  static void  operator delete(void* ptr, size_t size) noexcept;
-  static void* operator new[](size_t size);
-  static void  operator delete[](void* ptr, size_t size) noexcept;
+	Apple() {
+		cout << "default Apple ctor.this = " << this << endl;
+	}
+	virtual ~Apple() {
+		cout << "Apple dtor.this = " << this << endl;
+	}
+	virtual void process() {
+	}
+	void save() {
+	}
+	static void* operator new(size_t size);
+	static void operator delete(void* ptr, size_t size) noexcept;
+	static void* operator new[](size_t size);
+	static void operator delete[](void* ptr, size_t size) noexcept;
 };
 
 inline
 void* Apple::operator new(size_t size) {
-  if (void* ptr = ::operator new(size)) {
-    cout << "Apple::new(), size = " << size << ", return: " << ptr << endl; 
-    return ptr; 
-  } else {
-    throw bad_alloc();
-  }
+	if (void* ptr = ::operator new(size)) {
+		cout << "Apple::new(), size = " << size << ", return: " << ptr << endl;
+		return ptr;
+	} else {
+		throw bad_alloc();
+	}
 }
 
 inline
 void Apple::operator delete(void* ptr, size_t size) noexcept {
-  cout << "Apple::delete(), ptr = " << ptr << ", size = " << size << endl;
-  ::operator delete(ptr);
-} 
+	cout << "Apple::delete(), ptr = " << ptr << ", size = " << size << endl;
+	::operator delete(ptr);
+}
 
 inline
 void* Apple::operator new[](size_t size) {
-  if (void* ptr = ::operator new(size)) {
-    cout << "Apple::new[](), size = " << size << ", return: " << ptr << endl; 
-    return ptr;   
-  } else {
-    throw bad_alloc();
-  }
+	if (void* ptr = ::operator new(size)) {
+		cout << "Apple::new[](), size = " << size << ", return: " << ptr
+				<< endl;
+		return ptr;
+	} else {
+		throw bad_alloc();
+	}
 }
 
 inline
 void Apple::operator delete[](void* ptr, size_t size) noexcept {
-  cout << "Apple::delete[](), ptr = " << ptr << ", size = " << size << endl;
-  ::operator delete(ptr);
+	cout << "Apple::delete[](), ptr = " << ptr << ", size = " << size << endl;
+	::operator delete(ptr);
 }
 //----------------------------------------------------------------  
 
