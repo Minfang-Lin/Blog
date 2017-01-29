@@ -248,25 +248,25 @@ print({2,3,5,7,11,13,17});  // pass a list of values to print()
 ``` cpp
 class P
 {
-  	public:
-  		// ctor version 1
-      	P(int a, int b) { 
-         	cout << "P(int, int), a=" << a << ", b=" << b << endl; 
-	  	}
-	  
-	  	// ctor version 2
-      	P(initializer_list<int> initlist) {
-		 	cout << "P(initializer_list<int>), values= ";    	  
-      	 	for (auto i : initlist)
-      	      	cout << i << ' ';  
-      	 	cout << endl;
-	  	}
+public:
+	// ctor version 1
+	P(int a, int b) {
+		cout << "P(int, int), a=" << a << ", b=" << b << endl;
+	}
+
+	// ctor version 2
+	P(initializer_list<int> initlist) {
+		cout << "P(initializer_list<int>), values= ";
+		for (auto i : initlist)
+		cout << i << ' ';
+		cout << endl;
+	}
 };
 
-P p(77,5);		// P(int, int), a=77, b=5
-P q{77,5};		// P(initializer_list<int>), values= 77 5
-P r{77,5,42};	// P(initializer_list<int>), values= 77 5 42
-P s={77,5};     // P(initializer_list<int>), values= 77 5
+P p(77,5);          // P(int, int), a=77, b=5
+P q {77,5};         // P(initializer_list<int>), values= 77 5
+P r {77,5,42};      // P(initializer_list<int>), values= 77 5 42
+P s = { 77, 5 };    // P(initializer_list<int>), values= 77 5
 ```
 
 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> `P s={77,5};`调用的是构造函数，而不是赋值。

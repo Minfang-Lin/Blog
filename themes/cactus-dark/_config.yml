@@ -32,7 +32,7 @@ customize:
         facebook: https://www.facebook.com/minfang.lin.5
         weibo: http://www.weibo.com/leafcard
     post_count: 10
-    highlight: solarized-dark
+    highlight: zenburn
 
 # RSS
 rss: false

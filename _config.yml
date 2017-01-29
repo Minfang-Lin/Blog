@@ -9,7 +9,7 @@ description: A simple blog about medicine, programmering and other interesting t
 author: Minfang Lin
 email: leafcard@gmail.com
 language: zh-CN
-timezone:
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
