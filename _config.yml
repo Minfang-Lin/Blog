@@ -79,6 +79,7 @@ archive_generator:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/Minfang-Lin/Minfang-Lin.github.io.git
-  branch: master
+  repository: 
+   github: https://github.com/Minfang-Lin/Minfang-Lin.github.io.git,master
+   coding: https://git.coding.net/Minfang-Lin/blog.git,master
 

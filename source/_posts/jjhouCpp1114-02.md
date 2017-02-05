@@ -1,5 +1,5 @@
 ---
-title: C++ 新标准 11/14 - 02
+title: C++ 新标准 11/14 语言新特性 - 02
 date: 2017-01-11 20:00
 author: Minfang Lin
 tags: [Cpp,11/14,侯捷]
@@ -374,3 +374,4 @@ struct Derived2 : Base2 {
 	// Error: overriding final function 'virtual void Base2::f()'
 };
 ```
+

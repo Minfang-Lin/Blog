@@ -1,5 +1,5 @@
 ---
-title: C++ 新标准 11/14 - 03
+title: C++ 新标准 11/14 语言新特性 - 03
 date: 2017-01-15 20:00
 author: Minfang Lin
 tags: [Cpp,11/14,侯捷]
@@ -40,7 +40,7 @@ auto add(T1 x, T2 y)->decltype(x+y);
 
 ### ② decltype, used in metaprogramming
 
-``` cpp 
+``` cpp
 template<typename T>
 void test(T obj) {
 	// 当我们手上有type，可取其inner typedef，没问题
@@ -316,6 +316,7 @@ struct PRINT_TUPLE<MAX, MAX, Args...> {
 template<typename... Values> class tuple;
 template<> class tuple<> { };
 
+// 将数据分为一个和一包，一个用于声明变量，一包再做成一个tuple，用于继承
 template<typename Head, typename... Tail>
 class tuple<Head, Tail...> 
 	:private tuple<Tail...> // 使用私有继承，因为这样做只是为了满足递归继承，并不是is-a的关系
